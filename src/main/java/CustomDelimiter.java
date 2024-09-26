@@ -13,8 +13,11 @@ public class CustomDelimiter {
         inputText.startsWith("\n",3);
     }
 
-    public String getTextWithoutCustomDelimiter(String inputText) {
-        return inputText.substring(4);
+    public String removeCustomTextIfExists(String inputText) {
+        if(isCustomDelimiterExists(inputText)){
+            return inputText.substring(4);
+        }
+        return inputText;
     }
 
 
