@@ -22,4 +22,13 @@ public class CustomDelimiterTest {
     public void isCustomDelimiterExistsTest(String inputText, Boolean result){
         assertEquals(customDelimiter.isCustomDelimiterExists(inputText), result);
     }
+
+    @ParameterizedTest
+    @CsvSource({"'//g\n1g2g3', 'g'",
+                "'//;\n1g2g3', ';'",
+                "'///\n1g2g3', '/'",
+                "'//\\n1g2g3', '\\'"})
+    public void getCustomDelimiterTest(String inputText, String answer){
+        assertEquals(customDelimiter.getCustomDelimiter(inputText), answer);
+    }
 }

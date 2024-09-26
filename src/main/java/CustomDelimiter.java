@@ -6,5 +6,10 @@ public class CustomDelimiter {
         inputText.startsWith("\n",3);
     }
 
+    public String getCustomDelimiter(String inputText){
+        String a ="\"";
+        return inputText.charAt(2) + "";
+    }
+
 
 }
