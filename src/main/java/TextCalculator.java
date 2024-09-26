@@ -1,13 +1,31 @@
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class TextCalculator {
-    
-    public int parseAndCalculate(String[] delimiters, String inputText){
+    CustomDelimiter customDelimiter;
+
+    public int splitAndSum(String inputText) {
+        customDelimiter = new CustomDelimiter();
+        ArrayList<String> delimiters = new ArrayList(Arrays.asList(",", ":"));
+
+        addCustomDelimiterIfExists(delimiters, inputText);
+        
+        return parseAndCalculate(delimiters, inputText);
+    }
+
+    private void addCustomDelimiterIfExists(ArrayList<String> delimiters, String inputText){
+        if(customDelimiter.isCustomDelimiterExists(inputText)){
+            delimiters.add(customDelimiter.getCustomDelimiterIfExists(inputText));
+        }
+    }
+
+    public int parseAndCalculate(ArrayList<String> delimiters, String inputText){
         String[] splittedText = splitText(delimiters, inputText);
         
         return getIntegerSum(splittedText);
     }
 
-    public String[] splitText(String[] delimiterArray, String inputText) {
+    public String[] splitText(ArrayList<String> delimiterArray, String inputText) {
         for(String delimiter : delimiterArray){
             inputText = inputText.replace(delimiter, ":");            
         }

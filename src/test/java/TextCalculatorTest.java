@@ -1,6 +1,10 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -22,7 +26,7 @@ public class TextCalculatorTest {
                "'[ , ;',  '1[2,6,8', 17",
                "'s ;',  '1s5;7', 13"})
     public void parseAndCalculateTest(String delimiters, String inputText, int answer){
-        String[] delimiterArray = delimiters.split(" ");
+        ArrayList<String> delimiterArray = new ArrayList<>(Arrays.asList(delimiters.split(" ")));
 
         int result = textCalculator.parseAndCalculate(delimiterArray, inputText);
         assertEquals(result, answer);
@@ -30,12 +34,17 @@ public class TextCalculatorTest {
 
     @Test    
     public void splitTextWithGivenDelimitersTest(){
-        String[] delimiterArray = {",",":"};
+        ArrayList<String> delimiterArray = new ArrayList<>(Arrays.asList(",",":"));
         String inputText = "1,2:2";
         String[] answer = {"1","2","2"};
 
         String[] result = textCalculator.splitText(delimiterArray, inputText);
-        assertTrue(Arrays.equals(result, answer));
+        assertTrue(Arrays.equals(answer, result));
     }
     
+    @Test
+    public void splitAndSumTest(){
+        int result = textCalculator.splitAndSum("1,2:2");
+        assertThat(result).isEqualTo(5);
+    }
 }

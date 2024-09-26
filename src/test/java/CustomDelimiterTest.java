@@ -18,17 +18,26 @@ public class CustomDelimiterTest {
     @CsvSource({"'//g\n1g2g3', true",
                 "'//gn1g2g3', false",
                 "'/g\n1g2g3', false",
-                "'//;;\n1g2g3', false"})
-    public void isCustomDelimiterExistsTest(String inputText, Boolean result){
-        assertEquals(customDelimiter.isCustomDelimiterExists(inputText), result);
+                "'//;;\n1g2g3', false",
+                "'//', false"})
+    public void isCustomDelimiterExistsTest(String inputText, Boolean answer){
+        assertEquals(answer, customDelimiter.isCustomDelimiterExists(inputText));
     }
 
     @ParameterizedTest
     @CsvSource({"'//g\n1g2g3', 'g'",
                 "'//;\n1g2g3', ';'",
-                "'///\n1g2g3', '/'",
-                "'//\\n1g2g3', '\\'"})
+                "'///\n1g2g3', '/'"})
     public void getCustomDelimiterTest(String inputText, String answer){
-        assertEquals(customDelimiter.getCustomDelimiter(inputText), answer);
+        assertEquals(answer, customDelimiter.getCustomDelimiterIfExists(inputText));
+    }
+
+    @ParameterizedTest
+    @CsvSource({"'//g\n1g2g3', '1g2g3'",
+                "'//;\n1,2,3;4;5', '1,2,3;4;5'",
+                "'///\n12345', '12345'",
+                "'//\\n1;2\3', '1;2\3'"})
+    public void getTextWithoutCustomDelimiterTest(String inputText, String answer){
+        assertEquals(answer, customDelimiter.getTextWithoutCustomDelimiter(inputText));
     }
 }
