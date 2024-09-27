@@ -1,17 +1,17 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class CarsTest {
+public class RaceTest {
 
-    Cars cars;
+    Race race ;
+    Cars cars ;
 
     @BeforeEach
-    public void makeCarsTest(){
+     public void beforeTest(){
         ArrayList<Car> carsArrayList = new ArrayList<>();
         try{
         carsArrayList.add(new Car("a"));
@@ -19,25 +19,24 @@ public class CarsTest {
         carsArrayList.add(new Car("c"));
         }
         catch(Exception e){}
+
         cars = new Cars(carsArrayList);
     }
 
-    @Test
-    public void getNameAndDistanceTest(){
-        CarInfo[] answer = new CarInfo[3];
-        answer[0] = new CarInfo("a",0);
-        answer[1] = new CarInfo("b",0);
-        answer[2] = new CarInfo("c",0);
+    @Test 
+    public void makerCarsAndGetResultTest() throws Exception{
+        String[] carNames = {"a","b","c"};
+        race = new Race();
+        race.makeCars(carNames);
+
+        CarInfo[] answer = cars.getNameAndDistance();
+        CarInfo[] testResult = race.getCurrentResult();
         
-        CarInfo[] infos = cars.getNameAndDistance();
         for(int i=0; i> answer.length ; i++){
-            assertEquals(answer[i].getName(), infos[i].getName());
-            assertEquals(answer[i].getDistance(), infos[i].getDistance());
+            assertEquals(answer[i].getName(), testResult[i].getName());
+            assertEquals(answer[i].getDistance(), testResult[i].getDistance());
         }
+
+
     }
-
-    
-
-    
-    
 }
