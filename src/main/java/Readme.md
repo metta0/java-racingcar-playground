@@ -25,7 +25,7 @@
 5. Racing 클래스
 + [x] 자동차 이름들(string[])을 받아서 cars 생성한다
 + [x] Cars를 가진다
-+ [ ] Cars에 경주를 시킨다
++ [x] Cars에 경주를 시킨다
 + [x] 현재 Result를 반환한다.
 + [ ] 최종 Result를 반환한다.
 
