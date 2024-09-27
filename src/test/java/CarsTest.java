@@ -35,5 +35,7 @@ public class CarsTest {
             assertEquals(answer[i].getDistance(), infos[i].getDistance());
         }
     }
+
+    
     
 }

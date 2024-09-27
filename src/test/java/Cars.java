@@ -15,4 +15,11 @@ public class Cars {
         return result;
     }
 
+    public void moveCars(RacingRule rule){
+        cars.stream()
+            .forEach(car -> {
+                if(rule.isMove()) car.move();
+            });
+    }
+
 }
