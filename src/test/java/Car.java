@@ -8,6 +8,7 @@ public class Car {
             throw new RuntimeException("자동차 이름이 5자를 초과하였습니다.");
         }
         this.name = name;
+        this.position = 0;
     }
 
     public void move(){
@@ -18,7 +19,7 @@ public class Car {
         return this.name;
     }
 
-    public int getPosition(){
+    public int getDistance(){
         return this.position;
     }
 }

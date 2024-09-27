@@ -21,7 +21,7 @@ public class CarTest {
             car.move();
             car.move();
             assertEquals(car.getName(),"Jihoo");
-            assertEquals(car.getPosition(), 2);
+            assertEquals(car.getDistance(), 2);
         }
         catch(Exception e){
             throw e;
