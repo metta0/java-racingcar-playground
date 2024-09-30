@@ -1,32 +1,27 @@
 import java.util.Objects;
 public class Car {
-    String name;
-    int position;
+    Name name;
+    Position position;
 
     Car(String name) throws Exception{
-        if(name.length() > 5){
-            throw new RuntimeException("자동차 이름이 5자를 초과하였습니다.");
-        }
-        this.name = name;
-        this.position = 0;
+        
+        this.name = new Name(name);
+        this.position = new Position(0);
     }
 
     Car(String name, int position) throws Exception{
-        if(name.length() > 5){
-            throw new RuntimeException("자동차 이름이 5자를 초과하였습니다.");
-        }
-        this.name = name;
-        this.position = position;
+        this.name = new Name(name);
+        this.position = new Position(position);
     }
 
 
     public void move(){
-        this.position +=1;
+        position = position.increasePostion();
     }
 
     protected void letsMove(){
         if(isMovable())
-            this.position +=1;
+            position = position.increasePostion();
     }
 
     boolean isMovable(){
@@ -38,11 +33,11 @@ public class Car {
     }
 
     public String getName(){
-        return this.name;
+        return this.name.getName();
     }
 
     public int getDistance(){
-        return this.position;
+        return this.position.getPosition();
     }
 
     @Override
@@ -50,8 +45,8 @@ public class Car {
         if (this == o) return true;
         if (!(o instanceof Car)) return false;
         Car car = (Car) o;
-        return this.name == car.name
-                && this.position == car.position;
+        return this.name.equals(car.name)
+                && this.position.equals(car.position);
     }
 
     @Override
