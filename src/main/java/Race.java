@@ -8,6 +8,7 @@ public class Race {
     RacingRule racingRule;
 
     Race(){}
+
     Race(Cars cars){
         this.cars = cars;
     }
@@ -20,15 +21,18 @@ public class Race {
         }
         cars = new Cars(carList);
     }
+    
+    public void runSingleRound(){
+        racingRule = new RacingRule();
+        
+        cars.moveCars(racingRule);
+    }
 
     public CarInfo[] getCurrentResult(){
+
         return cars.getNameAndDistance();
     }
 
-    public void runSingleRound(){
-        racingRule = new RacingRule();
-        cars.moveCars(racingRule);
-    }
     public String[] getWinner(){
         CarInfo[] infos = cars.getNameAndDistance();
         

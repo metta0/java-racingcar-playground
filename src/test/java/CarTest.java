@@ -20,8 +20,7 @@ public class CarTest {
             car = new Car("Jihoo");
             car.move();
             car.move();
-            assertEquals(car.getName(),"Jihoo");
-            assertEquals(car.getDistance(), 2);
+            assertEquals(car, new Car("Jihoo", 2));
         }
         catch(Exception e){
             throw e;
@@ -36,6 +35,25 @@ public class CarTest {
         catch(Exception e){
             assertThat(e).isInstanceOf(RuntimeException.class);
         }
+    }
+
+    @Test
+    public void carMoveTest() throws Exception{
+
+        car = new Car("Carl"){
+            @Override
+            protected boolean isMovable(){
+                return true;
+            }
+        };
+
+        car.letsMove();
+        car.letsMove();
+        car.letsMove();
+        assertEquals(car.getDistance(), 3);
+
+
+
     }
 
 }
